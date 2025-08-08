@@ -6,5 +6,6 @@ com/weather/controller/WeatherController.class
 com/weather/model/WeatherResponse$Wind.class
 com/weather/model/WeatherResponse.class
 com/weather/service/WeatherService.class
+com/weather/config/EnvironmentConfig.class
 com/weather/WeatherAppApplication.class
 com/weather/model/WeatherResponse$Main.class
