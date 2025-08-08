@@ -30,6 +30,7 @@ export interface WeatherData {
 
 export interface WeatherCardProps {
   weatherData: WeatherData;
+  temperatureUnit: 'metric' | 'imperial';
 }
 
 export interface SearchBarProps {

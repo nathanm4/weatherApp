@@ -13,7 +13,9 @@ import {
 import type { WeatherCardProps } from '../types/weather';
 import './WeatherCard.css';
 
-const WeatherCard: React.FC<WeatherCardProps> = ({ weatherData }) => {
+const WeatherCard: React.FC<WeatherCardProps> = ({ weatherData, temperatureUnit }) => {
+  const getTemperatureSymbol = () => temperatureUnit === 'metric' ? 'C' : 'F';
+  
   const getWeatherIcon = (weatherMain: string) => {
     const iconSize = 64;
     const iconColor = '#fff';
@@ -56,10 +58,10 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weatherData }) => {
             {getWeatherIcon(currentWeather.main)}
           </div>
           <div className="temperature">
-            <span className="temp-value">{Math.round(main.temp)}°</span>
+            <span className="temp-value">{Math.round(main.temp)}°{getTemperatureSymbol()}</span>
             <div className="weather-description">
               <p>{currentWeather.description}</p>
-              <p className="feels-like">Feels like {Math.round(main.feels_like)}°</p>
+              <p className="feels-like">Feels like {Math.round(main.feels_like)}°{getTemperatureSymbol()}</p>
             </div>
           </div>
         </div>
@@ -70,7 +72,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weatherData }) => {
           <Thermometer size={20} />
           <div className="detail-content">
             <span className="detail-label">High / Low</span>
-            <span className="detail-value">{Math.round(main.temp_max)}° / {Math.round(main.temp_min)}°</span>
+            <span className="detail-value">{Math.round(main.temp_max)}°{getTemperatureSymbol()} / {Math.round(main.temp_min)}°{getTemperatureSymbol()}</span>
           </div>
         </div>
 

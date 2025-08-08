@@ -1,0 +1,10 @@
+com/weather/model/WeatherResponse$Clouds.class
+com/weather/model/WeatherResponse$Weather.class
+com/weather/model/WeatherResponse$Sys.class
+com/weather/config/CorsConfig.class
+com/weather/controller/WeatherController.class
+com/weather/model/WeatherResponse$Wind.class
+com/weather/model/WeatherResponse.class
+com/weather/service/WeatherService.class
+com/weather/WeatherAppApplication.class
+com/weather/model/WeatherResponse$Main.class

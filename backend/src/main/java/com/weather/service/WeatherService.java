@@ -22,7 +22,11 @@ public class WeatherService {
     }
 
     public Mono<WeatherResponse> getCurrentWeather(String city) {
-        String url = String.format("%s/weather?q=%s&appid=%s&units=metric", baseUrl, city, apiKey);
+        return getCurrentWeather(city, "metric");
+    }
+
+    public Mono<WeatherResponse> getCurrentWeather(String city, String units) {
+        String url = String.format("%s/weather?q=%s&appid=%s&units=%s", baseUrl, city, apiKey, units);
         
         return webClient.get()
                 .uri(url)
@@ -31,7 +35,11 @@ public class WeatherService {
     }
 
     public Mono<WeatherResponse> getCurrentWeatherByCoordinates(double lat, double lon) {
-        String url = String.format("%s/weather?lat=%f&lon=%f&appid=%s&units=metric", baseUrl, lat, lon, apiKey);
+        return getCurrentWeatherByCoordinates(lat, lon, "metric");
+    }
+
+    public Mono<WeatherResponse> getCurrentWeatherByCoordinates(double lat, double lon, String units) {
+        String url = String.format("%s/weather?lat=%f&lon=%f&appid=%s&units=%s", baseUrl, lat, lon, apiKey, units);
         
         return webClient.get()
                 .uri(url)
