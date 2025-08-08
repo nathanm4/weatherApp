@@ -34,6 +34,32 @@ function App() {
     }
   };
 
+  const fetchWeatherByCoordinates = async (lat: number, lon: number, locationName: string) => {
+    setLoading(true);
+    setError(null);
+    setLastSearchQuery({type: 'location', lat, lon});
+    
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/weather/coordinates?lat=${lat}&lon=${lon}&units=${temperatureUnit}`
+      );
+      
+      if (!response.ok) {
+        throw new Error('Location not found');
+      }
+      
+      const data = await response.json();
+      // Override the name with the user-selected location name for better UX
+      data.name = locationName;
+      setWeatherData(data);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to fetch weather data');
+      setWeatherData(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const fetchWeatherByLocation = async () => {
     if (!navigator.geolocation) {
       setError('Geolocation is not supported by this browser');
@@ -164,6 +190,7 @@ function App() {
         <SearchBar 
           onSearch={fetchWeather}
           onLocationSearch={fetchWeatherByLocation}
+          onCoordinateSearch={fetchWeatherByCoordinates}
           loading={loading}
         />
 

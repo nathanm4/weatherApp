@@ -36,5 +36,16 @@ export interface WeatherCardProps {
 export interface SearchBarProps {
   onSearch: (city: string) => void;
   onLocationSearch: () => void;
+  onCoordinateSearch?: (lat: number, lon: number, locationName: string) => void;
   loading: boolean;
+}
+
+export interface LocationSuggestion {
+  place_id: number;
+  display_name: string;
+  lat: string;
+  lon: string;
+  type: string;
+  class: string;
+  addresstype: string;
 }
